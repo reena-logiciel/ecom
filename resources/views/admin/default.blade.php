@@ -15,6 +15,8 @@
     {!! Html::style('css/metisMenu.min.css') !!}
     {!! Html::style('css/timeline.css') !!}
     {!! Html::style('css/sb-admin-2.css') !!}
+    {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::style('css/font-awesome.min.css') !!}
 
 </head>
 
@@ -60,7 +62,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
+                        <!--<li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -69,8 +71,8 @@
                                 </button>
                             </span>
                             </div>
-                            <!-- /input-group -->
-                        </li>
+                            <!-- /input-group 
+                        </li> -->
                         <li>
                             <!-- <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> -->
                             {!! link_to_route('categories.index', 'Categories', [], ['class' => '']) !!}

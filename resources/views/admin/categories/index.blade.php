@@ -26,7 +26,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -46,6 +46,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                         <div style="float:right;"> {!! $categories->render(); !!} </div>
                     </div>
                 </div>
                 <!-- /.panel-body -->

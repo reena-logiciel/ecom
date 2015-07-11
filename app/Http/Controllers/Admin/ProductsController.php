@@ -20,7 +20,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products =  Product::simplePaginate(10);
+        $products =  Product::paginate(5);
         return view('admin.products.index', [
             'products' => $products
         ]);
@@ -38,8 +38,10 @@ class ProductsController extends Controller
 
     public function add()
     {
+        $data = Category::lists('name', 'id')->toArray();
         return view('admin.products.add', [
-            'product' => []
+            'product' => [],
+            'data'  => $data
         ]);
     }
 

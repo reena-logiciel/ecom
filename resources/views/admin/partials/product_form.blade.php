@@ -9,7 +9,7 @@
 
 <div class="form-group">
     <label>Category</label>
-    {!! Form::select('category_id',  [''=>'--please select--'] + $data, Input::old('category_id'), ['class' => 'form-control'])  !!}    
+    {!! Form::select('category_id',  [null=>'Please Select'] + $data, Input::old('category_id'), ['class' => 'form-control'])  !!}    
      @if($errors->has('category_id'))
         <label for="">{{ $errors->first('category_id') }}</label>
     @endif

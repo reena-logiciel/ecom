@@ -44,9 +44,9 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                {!! $products->render(); !!}
                             </tbody>
                         </table>
+                        <div style="float:right;"> {!! $products->render(); !!} </div>
                     </div>
                 </div>
                 <!-- /.panel-body -->
