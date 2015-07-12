@@ -44,10 +44,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 	
 
-	Route::get('home', function() {
+	/* Route::get('home', function() {
 		$user = \Auth::user();
 		echo $user->name;
-	});
+	}); */
 	
-	
+	Route::get('home', ['as'=>'home','uses' => 'HomeController@index']);
 });
