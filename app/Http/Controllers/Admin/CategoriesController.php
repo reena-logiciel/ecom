@@ -21,7 +21,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories     = Category::paginate(5);
-        return view(CategoriesController::$adminPrefix.'.categories.index', [
+        return view(Controller::$adminPrefix.'.categories.index', [
             'categories' => $categories
         ]);
     }
@@ -38,7 +38,7 @@ class CategoriesController extends Controller
 
     public function add()
     {
-        return view(CategoriesController::$adminPrefix.'.categories.add', [
+        return view(Controller::$adminPrefix.'.categories.add', [
             'category' => []
         ]);
     }
@@ -79,7 +79,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view(CategoriesController::$adminPrefix.'.categories.edit', [
+        return view(Controller::$adminPrefix.'.categories.edit', [
             'category' => $category
         ]);
     }

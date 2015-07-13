@@ -21,7 +21,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products =  Product::paginate(5);
-        return view(ProductsController::$adminPrefix.'.products.index', [
+        return view(Controller::$adminPrefix.'.products.index', [
             'products' => $products
         ]);
     }
@@ -39,7 +39,7 @@ class ProductsController extends Controller
     public function add()
     {
         $data = Category::lists('name', 'id')->toArray();
-        return view(ProductsController::$adminPrefix.'.products.add', [
+        return view(Controller::$adminPrefix.'.products.add', [
             'product' => [],
             'data'  => $data
         ]);
@@ -82,7 +82,7 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $data = Category::lists('name', 'id')->toArray();
-        return view(ProductsController::$adminPrefix.'.products.edit', [
+        return view(Controller::$adminPrefix.'.products.edit', [
             'product' => $product,
             'data' => $data
         ]);
