@@ -20,8 +20,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories =  Category::paginate(5);
-        return view('admin.categories.index', [
+        $categories     = Category::paginate(5);
+        return view(CategoriesController::$adminPrefix.'.categories.index', [
             'categories' => $categories
         ]);
     }
@@ -38,7 +38,7 @@ class CategoriesController extends Controller
 
     public function add()
     {
-        return view('admin.categories.add', [
+        return view(CategoriesController::$adminPrefix.'.categories.add', [
             'category' => []
         ]);
     }
@@ -79,7 +79,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.categories.edit', [
+        return view(CategoriesController::$adminPrefix.'.categories.edit', [
             'category' => $category
         ]);
     }

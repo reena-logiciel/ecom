@@ -21,7 +21,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products =  Product::paginate(5);
-        return view('admin.products.index', [
+        return view(ProductsController::$adminPrefix.'.products.index', [
             'products' => $products
         ]);
     }
@@ -39,7 +39,7 @@ class ProductsController extends Controller
     public function add()
     {
         $data = Category::lists('name', 'id')->toArray();
-        return view('admin.products.add', [
+        return view(ProductsController::$adminPrefix.'.products.add', [
             'product' => [],
             'data'  => $data
         ]);
@@ -80,11 +80,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-         $product = Product::findOrFail($id);
-         $data = Category::lists('name', 'id')->toArray();
-
-        //dd($data);
-        return view('admin.products.edit', [
+        $product = Product::findOrFail($id);
+        $data = Category::lists('name', 'id')->toArray();
+        return view(ProductsController::$adminPrefix.'.products.edit', [
             'product' => $product,
             'data' => $data
         ]);
