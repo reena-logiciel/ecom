@@ -25,7 +25,7 @@ class CreateProductRequest extends Request
     {
         return [
             'name' => 'required|max:255',
-           
+            'price' => 'required|integer'
         ];
     }
 }

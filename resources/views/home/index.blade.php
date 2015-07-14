@@ -7,7 +7,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                     <th>Category</th>
+                    <th>Category</th>
+                    <th>Price</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -15,15 +16,25 @@
                 @foreach($products as $key => $product)
                 <tr class="odd gradeX">
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->category_id }}</td>
-                    <td class="center">
-                        {!! link_to_route('product.edit', 'Add to Cart', ['id' => $product->id], ['class' => 'btn btn-primary']) !!}
-                        
+                    <td> {{ $product->name }} </td>
+                    <td>
+                    @if ($product->category)
+                        {{ $product->category->name }}
                     </td>
+                     @endif
+                    <td> {{ $product->price }} </td>
+                    <td class="center">
+                        {!! Form::open(['route' => ['cart.add', $product->id], 'method' => 'post']) !!}
+                            {!! Form::hidden('id',$product->id) !!}
+                            <button type="submit" class="btn btn-default">Add to Cart</button>
+                            
+                        {!! Form::close() !!}
+                    </td>
+                   
                 </tr>
                 @endforeach
             </tbody>
         </table>
         <div style="float:right;"> {!! $products->render(); !!} </div>
     </div>
+    @endsection

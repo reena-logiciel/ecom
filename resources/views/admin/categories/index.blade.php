@@ -6,7 +6,7 @@
             <h1 class="page-header">
                 Categories
                 <span class="pull-right">
-                    {!! link_to_route('category.add', 'Add Category', [], ['class' => 'btn btn-primary']) !!}
+                    {!! link_to_route('category.add', 'Add Category', [], ['class' => 'btn btn-primary']) !!} 
                 </span>
             </h1>
         </div>

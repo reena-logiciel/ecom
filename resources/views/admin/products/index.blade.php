@@ -26,7 +26,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                     <th>Category</th>
+                                    <th>Category</th>
+                                    <th>Price</th> 
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -35,7 +36,12 @@
                                 <tr class="odd gradeX">
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->category_id }}</td>
+                                    <td>
+                                        @if($product->category)
+                                            {{ $product->category->name }}
+                                        @endif    
+                                    </td>
+                                    <td>{{ $product->price }}</td>
                                     <td class="center">
                                         {!! link_to_route('product.edit', 'Update', ['id' => $product->id], ['class' => 'btn btn-primary']) !!}
                                         {!! Form::open(['route' => ['product.delete', $product->id], 'method' => 'delete']) !!}

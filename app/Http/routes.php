@@ -18,36 +18,44 @@ Route::get('/', function () {
 
 
 //Route::get('login', 'Auth\AuthController@getLogin');
-Route::get('login', 'Auth\AuthController@getLogin');
-Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('login', ['as'=>'login', 'uses'=>'Auth\AuthController@getLogin']);
+Route::post('login', ['as'=>'login', 'uses'=>'Auth\AuthController@postLogin']);
+
+Route::get('home', ['as'=>'home','uses' => 'HomeController@index']);
+
+Route::post('cart/add/{id}', ['as'=>'cart.add','uses' => 'CartController@add'])->where('id', '[0-9]+');
 
 Route::group(['middleware' => 'auth'], function() {
+	Route::group(['prefix' => 'admin1'], function()	{
+		Route::group(['namespace' => 'Admin'], function()	{		
 
+	    	 Route::get('categories/index', ['as' => 'categories.index', 'uses' => 'CategoriesController@index']);
+	    	Route::get('category/add', ['as' => 'category.add', 'uses' => 'CategoriesController@add']);
+	    	Route::post('category/store', ['as' => 'category.store', 'uses' => 'CategoriesController@store']);
+	    	Route::get('category/edit/{id}', ['as' => 'category.edit', 'uses' => 'CategoriesController@edit'])->where('id', '[0-9]+');
+			Route::post('category/update', ['as' => 'category.update', 'uses' => 'CategoriesController@update']);
+			Route::delete('category/delete/{id}', ['as' => 'category.delete', 'uses' => 'CategoriesController@destroy']);
+				
 
-	Route::group(array('prefix' => 'admin'), function()	{
-    	Route::get('categories/index', ['as' => 'categories.index', 'uses' => 'Admin\CategoriesController@index']);
-    	Route::get('category/add', ['as' => 'category.add', 'uses' => 'Admin\CategoriesController@add']);
-    	Route::post('category/store', ['as' => 'category.store', 'uses' => 'Admin\CategoriesController@store']);
-    	Route::get('category/edit/{id}', ['as' => 'category.edit', 'uses' => 'Admin\CategoriesController@edit'])->where('id', '[0-9]+');
-		Route::post('category/update', ['as' => 'category.update', 'uses' => 'Admin\CategoriesController@update']);
-		Route::delete('category/delete/{id}', ['as' => 'category.delete', 'uses' => 'Admin\CategoriesController@destroy']);
+			/* Route::resource('categories', 'CategoriesController'); */
 
-		Route::get('products/index', ['as' => 'products.index', 'uses' => 'Admin\ProductsController@index']);
-    	Route::get('product/add', ['as' => 'product.add', 'uses' => 'Admin\ProductsController@add']);
-    	Route::post('product/store', ['as' => 'product.store', 'uses' => 'Admin\ProductsController@store']);
-    	Route::get('product/edit/{id}', ['as' => 'product.edit', 'uses' => 'Admin\ProductsController@edit'])->where('id', '[0-9]+');
-		Route::post('product/update', ['as' => 'product.update', 'uses' => 'Admin\ProductsController@update']);
-		Route::delete('product/delete/{id}', ['as' => 'product.delete', 'uses' => 'Admin\ProductsController@destroy']);
+			Route::get('products/index', ['as' => 'products.index', 'uses' => 'ProductsController@index']);
+	    	Route::get('product/add', ['as' => 'product.add', 'uses' => 'ProductsController@add']);
+	    	Route::post('product/store', ['as' => 'product.store', 'uses' => 'ProductsController@store']);
+	    	Route::get('product/edit/{id}', ['as' => 'product.edit', 'uses' => 'ProductsController@edit'])->where('id', '[0-9]+');
+			Route::post('product/update', ['as' => 'product.update', 'uses' => 'ProductsController@update']);
+			Route::delete('product/delete/{id}', ['as' => 'product.delete', 'uses' => 'ProductsController@destroy']);
 	
+		
+		});
+
 		Route::get('logout', ['as'=>'logout','uses' => 'Auth\AuthController@getLogout']);
 	});
-
 	
-
 	/* Route::get('home', function() {
 		$user = \Auth::user();
 		echo $user->name;
 	}); */
 	
-	Route::get('home', ['as'=>'home','uses' => 'HomeController@index']);
+	
 });

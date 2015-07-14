@@ -55,6 +55,7 @@ class ProductsController extends Controller
         $product = new Product;
         $product->name = $request->get('name');
         $product->category_id = $request->get('category_id', 0);
+        $product->price = $request->get('category_id', 0);
         if($product->save()) {
             return Redirect::route('products.index');
         }
@@ -99,6 +100,7 @@ class ProductsController extends Controller
         $product = Product::findOrFail($request->get('id'));
         $product->name = $request->get('name');
         $product->category_id = $request->get('category_id',0);
+        $product->price = $request->get('price',0);
         if($product->save()) {
             return Redirect::route('products.index');
         }

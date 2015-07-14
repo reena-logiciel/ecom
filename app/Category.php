@@ -12,4 +12,10 @@ class Category extends Model
      * @var string
      */
     protected $table = 'categories';
+
+    public function children() {
+
+	    return $this->hasMany('App\Product', 'category_id');
+
+	}
 }
