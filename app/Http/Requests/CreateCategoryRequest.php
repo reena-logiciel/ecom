@@ -25,7 +25,7 @@ class CreateCategoryRequest extends Request
     {
         return [
             'name' => 'required|max:50',
-           
+            'image' => 'required|mimes:png,jpg'
         ];
     }
 }

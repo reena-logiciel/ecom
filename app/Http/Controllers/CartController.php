@@ -39,7 +39,7 @@ class CartController extends Controller
 
            
         } else { 
-            $request->session()->put('cart', array($data));
+            $request->session()->put('cart', array($product_to_add));
         }
         
         $value = $request->session()->get('cart');

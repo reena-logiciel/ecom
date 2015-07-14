@@ -23,11 +23,11 @@ Route::post('login', ['as'=>'login', 'uses'=>'Auth\AuthController@postLogin']);
 
 Route::get('home', ['as'=>'home','uses' => 'HomeController@index']);
 
-Route::post('cart/add/{id}', ['as'=>'cart.add','uses' => 'CartController@add'])->where('id', '[0-9]+');
-
 Route::group(['middleware' => 'auth'], function() {
-	Route::group(['prefix' => 'admin1'], function()	{
-		Route::group(['namespace' => 'Admin'], function()	{		
+
+	Route::group(['prefix' => 'admin'], function()	{
+
+		Route::group(['namespace' => 'Admin'], function()	{	
 
 	    	 Route::get('categories/index', ['as' => 'categories.index', 'uses' => 'CategoriesController@index']);
 	    	Route::get('category/add', ['as' => 'category.add', 'uses' => 'CategoriesController@add']);
@@ -57,5 +57,6 @@ Route::group(['middleware' => 'auth'], function() {
 		echo $user->name;
 	}); */
 	
+	Route::post('cart/add/{id}', ['as'=>'cart.add','uses' => 'CartController@add'])->where('id', '[0-9]+');
 	
 });
